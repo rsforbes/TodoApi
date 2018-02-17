@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.IO;
 using Swashbuckle.AspNetCore.Swagger;
 using TodoApi.Models;
 
@@ -31,7 +32,20 @@ namespace TodoApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "ToDo API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = "None",
+                    Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "https://twitter.com/spboyer" },
+                    License = new License { Name = "Use under LICX", Url = "https://example.com/license" }
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "TodoApi.xml");
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -43,6 +57,14 @@ namespace TodoApi
                 app.UseDeveloperExceptionPage();
             }
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseMvc();
         }
     }

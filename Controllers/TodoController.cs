@@ -74,6 +74,10 @@ namespace TodoApi.Controllers
             return new NoContentResult();
         }
 
+        /// <summary>
+        /// Deletes a specific TodoItem.
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {

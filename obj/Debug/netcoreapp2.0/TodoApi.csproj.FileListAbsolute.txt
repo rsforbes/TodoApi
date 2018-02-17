@@ -8,3 +8,4 @@
 /Users/rforbes/TodoApi/obj/Debug/netcoreapp2.0/TodoApi.AssemblyInfo.cs
 /Users/rforbes/TodoApi/obj/Debug/netcoreapp2.0/TodoApi.dll
 /Users/rforbes/TodoApi/obj/Debug/netcoreapp2.0/TodoApi.pdb
+/Users/rforbes/TodoApi/bin/Debug/netcoreapp2.0/TodoApi.xml
